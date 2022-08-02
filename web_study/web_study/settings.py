@@ -90,11 +90,14 @@ WSGI_APPLICATION = 'web_study.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_db',
+        'NAME': 'database1',
         'USER': 'root',
         'PASSWORD': 'tjsals6092',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
+        "OPTIONS": {"charset": "utf8mb4",
+                    'init_command':'SET sql_mode="STRICT_TRANS_TABLES"',
+                    },
     }
 }
 
