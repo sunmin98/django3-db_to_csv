@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <h1>데이터베이스 출력~!</h1>
+
+
+    none_fertile <input type="radio" name="radio_name /" value="none_fertile">
+    fertile<input type="radio" name="radio_name /" value="fertile">
+    error<input type="radio" name="radio_name /" value="error">
+    <input type="submit" value="출력!">
+
+
+    {%  for i in db_print_model_view %}
+
+        <h5> {{ i.db_print_model_view }}</h5>
+
+
+    {% endfor %}
+
+
+
+
+</body>
+</html>
+

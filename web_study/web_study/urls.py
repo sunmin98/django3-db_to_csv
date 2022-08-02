@@ -16,14 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
+
 
 urlpatterns = [
     #path('admin/', admin.site.urls), #이거 있으면 오류 떠서 내가 지웠다 미래의 선만아
     path('', include('main.urls')),
 ]
 
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root = settings.MEDIA_ROOT)
 
 
 

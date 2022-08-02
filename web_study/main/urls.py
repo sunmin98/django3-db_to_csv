@@ -25,8 +25,9 @@ urlpatterns = [
 
     #path('blog/csv_post/',csv_post, name='csv_post'),
 
-    path("blog/upload-file/", uploadFile, name="uploadFile"),
-    path("blog/upload-filr/", downloadFile, name="downloadFile")
+    #path("blog/upload-file/", uploadFile, name="uploadFile"),
+    #path("blog/upload-filr/", downloadFile, name="downloadFile"),
+    path("blog/db_print/", db_print, name="db_print")
 ]
 
 
@@ -34,9 +35,11 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #?? https://hyundy.tistory.com/11
+
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
     )
+
 

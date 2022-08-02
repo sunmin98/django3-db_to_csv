@@ -21,17 +21,19 @@ class Document(models.Model):
 
 
 
-#CSV --> DB
-class Menu(models.Model):
-		name = models.CharField(max_length=20)
+#DB 프린트
+class db_print_model(models.Model):
+    file_name = models.CharField(max_length=300)
+    class_name = models.CharField(max_length=200)
+    percent = models.CharField(max_length=200)
 
+    def __db_print_model_see__(self):
+        return self.file_name , self.class_name , self.percent
 
-class Category(models.Model):
-		name = models.CharField(max_length=20)
-		menu = models.ForeignKey('Menu', on_delete=models.CASCADE)
+class log_file(models.Model):
+    file_name = models.CharField(max_length=300)
+    class_name = models.CharField(max_length=200)
+    percent = models.CharField(max_length=200)
 
-
-class Product(models.Model):
-		name  = models.CharField(max_length=100)
-		price = models.IntegerField()
-		category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    def __db_print_model_see__(self):
+        return self.file_name , self.class_name , self.percent

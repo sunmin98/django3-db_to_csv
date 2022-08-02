@@ -8,8 +8,9 @@ import time
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 # View에 Model(Post 게시글) 가져오기
-from .forms import UploadFileForm
+#from .forms import UploadFileForm
 from .models import Post
+from .models import log_file
 from . import models
 from . import DB_CSV
 # 회원가입, 로그인
@@ -31,6 +32,9 @@ title = str
 def index(request):
     return render(request, 'main/index.html')
 
+def db_print(request):
+    db_print_model_view = log_file.objects.all()
+    return render(request, 'main/db_print.html',{'db_print_model_view' : db_print_model_view})
 
 # blog.html 페이지를 부르는 blog 함수
 def blog(request):
@@ -68,46 +72,46 @@ def new_post(request):
 
 # def csv_post(request):
 #     return render(request, 'main/upload-file.html')
-
-@login_required
-##업로드##
-def uploadFile(request):
-    if request.method == "POST":
-        # Fetching the form data
-        form = UploadFileForm(request.POST, request.FILES)
-
-        fileTitle = request.POST["fileTitle"]
-        # 이게 파일 제목 변수로 추정되어진다~~~~~~~~~~~~
-
-        uploadedFile = request.FILES["uploadedFile"]
-        if form.is_valid(): DB_CSV.CSV_to_DB(form.cleaned_data["uploadedFile"])
-
-        # Saving the information in the database
-
-    documents = UploadFileForm()
-
-    # DB_CSV.DB_to_xlsx()
-
-    return render(request, "main/upload-file.html", context={
-        "files": documents
-    })
-
-
-##다운로드##
-def downloadFile(request):
-    DB_CSV.CSV_to_DB()
-    DB_CSV.DB_to_xlsx()
-    # global fileTitle
-    # global title
-    fileTitle = 'Seoul_temp_2017.csv'
-
-    #file_path = os.path.abspath("media/Uploaded Files/")
-    file_path = os.path.abspath("")
-    file_name = os.path.basename("web_study/서울_엑셀파일실험!!.xlsx")
-    fs = FileSystemStorage(file_path)
-
-    response = FileResponse(fs.open(file_name, 'rb'),
-                            content_type='application/vnd.ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="날씨.csv"'
-
-    return response
+#
+# @login_required
+# ##업로드##
+# def uploadFile(request):
+#     if request.method == "POST":
+#         # Fetching the form data
+#         form = UploadFileForm(request.POST, request.FILES)
+#
+#         fileTitle = request.POST["fileTitle"]
+#         # 이게 파일 제목 변수로 추정되어진다~~~~~~~~~~~~
+#
+#         uploadedFile = request.FILES["uploadedFile"]
+#         if form.is_valid(): DB_CSV.CSV_to_DB(form.cleaned_data["uploadedFile"])
+#
+#         # Saving the information in the database
+#
+#     documents = UploadFileForm()
+#
+#     # DB_CSV.DB_to_xlsx()
+#
+#     return render(request, "main/upload-file.html", context={
+#         "files": documents
+#     })
+#
+#
+# ##다운로드##
+# def downloadFile(request):
+#     DB_CSV.CSV_to_DB()
+#     DB_CSV.DB_to_xlsx()
+#     # global fileTitle
+#     # global title
+#     fileTitle = 'Seoul_temp_2017.csv'
+#
+#     #file_path = os.path.abspath("media/Uploaded Files/")
+#     file_path = os.path.abspath("")
+#     file_name = os.path.basename("web_study/서울_엑셀파일실험!!.xlsx")
+#     fs = FileSystemStorage(file_path)
+#
+#     response = FileResponse(fs.open(file_name, 'rb'),
+#                             content_type='application/vnd.ms-excel')
+#     response['Content-Disposition'] = 'attachment; filename="날씨.csv"'
+#
+#     return response
