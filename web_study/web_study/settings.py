@@ -29,7 +29,9 @@ SECRET_KEY = 'f=5916u#*dmf*#9)ys@vk=$$8jsr6van(6l$o(qlzznf!$gd7$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*',
+]
 
 
 # Application definition
@@ -60,7 +62,6 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-INTERNAL_IPS = ('127.0.0.1')
 
 ROOT_URLCONF = 'web_study.urls'
 
